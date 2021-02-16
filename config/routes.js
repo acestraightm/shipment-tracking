@@ -79,11 +79,11 @@ export default [
     component: '../layouts/BlankLayout',
     routes: [
       {
-        path: '/track',
+        path: '/',
         component: '../layouts/BasicLayout',
         routes: [
           {
-            path: '/track',
+            path: '/',
             name: 'order_tracking',
             component: './OrderDetail',
           },

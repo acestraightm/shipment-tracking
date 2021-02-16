@@ -36,6 +36,8 @@ export default defineConfig({
   title: false,
   ignoreMomentLocale: true,
   proxy: proxy[REACT_APP_ENV || 'dev'],
+  base: '/track/',
+  publicPath: '/track/',
   manifest: {
     basePath: '/',
   },

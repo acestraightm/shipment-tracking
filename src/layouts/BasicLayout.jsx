@@ -140,7 +140,7 @@ const BasicLayout = (props) => {
         return menuData || [];
       }}
       logo={logo}
-      title={null}
+      title={"Your Last Mile Delivery Partner "}
       layout="top"
       menuRender={false}
       headerHeight={80}

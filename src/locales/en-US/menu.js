@@ -49,5 +49,5 @@ export default {
   'menu.editor.flow': 'Flow Editor',
   'menu.editor.mind': 'Mind Editor',
   'menu.editor.koni': 'Koni Editor',
-  'menu.order_tracking': 'Shipment Tracking',
+  'menu.order_tracking': 'Your Last Mile Delivery Partner',
 };

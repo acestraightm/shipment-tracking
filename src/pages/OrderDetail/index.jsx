@@ -64,7 +64,11 @@ const OrderDetail = (props) => {
   var mapView = null;
 
   return (
-    <PageContainer>
+    <PageContainer
+      title={<div style={{fontSize: 14}}>
+        Find out more about us at <a href={"https://fastdespatch.com"}>www.fastdespatch.com</a>
+      </div>}
+    >
       <Card style={{ marginBottom: 24 }}>
         <Form
           layout={"inline"}
@@ -72,6 +76,7 @@ const OrderDetail = (props) => {
           initialValues={{ layout: "inline" }}
           colon={false}
           onFinish={values => handleSubmit(values)}
+          style={{ justifyContent: "center" }}
         >
           <Form.Item
             label="Tracking No"
@@ -168,13 +173,18 @@ const OrderDetail = (props) => {
                   }
                   ]}
                   dataSource={currentOrder.parcels}
+
                   pagination={false}
                 />
 
               </Col>
             </Row>
           </> :
-          <Empty />
+          <Empty
+            description={
+              <div>Please enter a valid Tracking No and press “Track” to find out more about your delivery.</div>
+            }
+          />
         }
       </Card>
 

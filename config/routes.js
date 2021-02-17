@@ -84,7 +84,6 @@ export default [
         routes: [
           {
             path: '/',
-            name: 'order_tracking',
             component: './OrderDetail',
           },
         ],

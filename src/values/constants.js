@@ -173,6 +173,11 @@ export const ParcelStateTitles = {
 
 export const LeaveTypeValues = {
   CUSTOMER: 'customer',
+  // For Business
+  MAIL_ROOM: 'mail_room',
+  RECEPTION: 'reception',
+  SHOP_ASSISTANT: 'shop_assistant',
+  // For Residential
   NEIGHBOR: 'neighbor',
   FRONT_PORCH: 'front_porch',
   REAR_PORCH: 'rear_porch',
@@ -184,6 +189,11 @@ export const LeaveTypeValues = {
 
 export const LeaveTypeTitles = {
   [LeaveTypeValues.CUSTOMER]: 'Customer',
+  // For Business
+  [LeaveTypeValues.MAIL_ROOM]: 'Mail Room',
+  [LeaveTypeValues.RECEPTION]: 'Reception',
+  [LeaveTypeValues.SHOP_ASSISTANT]: 'Shop Assistant',
+  // For Residential
   [LeaveTypeValues.NEIGHBOR]: 'Neighbor',
   [LeaveTypeValues.FRONT_PORCH]: 'Front Porch',
   [LeaveTypeValues.REAR_PORCH]: 'Rear Porch',

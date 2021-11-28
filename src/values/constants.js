@@ -33,6 +33,7 @@ export const OrderStatusValues = {
   PARTIALLY_DELIVERED: 'partially_delivered',
   NOT_DELIVERED: 'not_delivered',
   FINISHED: 'finished',
+  MISSING: 'missing',
 
   SENT_TO_SENDER: 'sent_to_sender'
 }
@@ -58,6 +59,7 @@ export const OrderStatusTitles = {
   [OrderStatusValues.PARTIALLY_DELIVERED]: 'Partially Delivered',
   [OrderStatusValues.NOT_DELIVERED]: 'Not Delivered',
   [OrderStatusValues.FINISHED]: 'Finished',
+  [OrderStatusValues.MISSING]: 'Delayed in Transit',
 
   [OrderStatusValues.SENT_TO_SENDER]: 'Send to Sender',
 }
@@ -82,6 +84,7 @@ export const OrderStatusColors = {
   [OrderStatusValues.DELIVERED]: COLORS.success,
   [OrderStatusValues.PARTIALLY_DELIVERED]: COLORS.warning,
   [OrderStatusValues.NOT_DELIVERED]: COLORS.danger,
+  [OrderStatusValues.MISSING]: COLORS.danger,
   [OrderStatusValues.FINISHED]: '#bbbbbb',
   [OrderStatusValues.SENT_TO_SENDER]: COLORS.lightGray,
 }
@@ -165,7 +168,7 @@ export const ParcelStateTitles = {
   [ParcelStateValues.DAMAGED_IN_UNLOADING]: 'Damaged in Unloading',
   [ParcelStateValues.DAMAGED_IN_LOADING]: 'Damaged in Loading',
   [ParcelStateValues.DAMAGED_IN_TRANSIT]: 'Damaged in Transit',
-  [ParcelStateValues.MISSING]: 'Missing',
+  [ParcelStateValues.MISSING]: 'Delayed in Transit',
   [ParcelStateValues.CUSTOMER_REFUSED]: 'Customer Refused',
 }
 

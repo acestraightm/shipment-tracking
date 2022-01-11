@@ -16,6 +16,7 @@ import {
   Descriptions,
   Image,
   Modal,
+  message,
 } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -38,6 +39,10 @@ import {
   LeaveTypeTitles,
 } from '@/values/constants';
 import { Config } from '@/config';
+
+const normalizePostcode = (postcode) => {
+  return postcode.replace(' ', '').toUpperCase();
+};
 
 const AsyncMap = withScriptjs(
   withGoogleMap((props) => (
@@ -71,25 +76,29 @@ const AsyncMap = withScriptjs(
   )),
 );
 
+const CheckPostcodeMode = {
+  DETAIL: 'detail',
+  RESCHEDULE: 'reschedule',
+};
+
 const OrderDetail = (props) => {
   const dispatch = useDispatch();
   let history = useHistory();
   const currentOrder = useSelector((state) => state.tracking.currentOrder);
   const [visibleDeliveryDetail, setVisibleDeliveryDetail] = useState(false);
   const [visiblePostcodeModal, setVisiblePostcodeModal] = useState(false);
+  const [checkPostcodeMode, setCheckPostcodeMode] = useState(CheckPostcodeMode.DETAIL);
   const [form] = Form.useForm();
   const [postcodeForm] = Form.useForm();
 
   let { orderId } = useParams();
   useEffect(() => {
-    if (orderId) {
-      setVisiblePostcodeModal(true);
-    }
+    if (orderId)
+      dispatch({
+        type: 'tracking/fetchOrder',
+        orderId,
+      });
   }, [orderId]);
-  useEffect(() => {
-    if (currentOrder) 
-      setVisiblePostcodeModal(false);
-  }, [currentOrder]);
 
   var mapView = null;
 
@@ -107,20 +116,33 @@ const OrderDetail = (props) => {
         okText="OK"
         cancelText="Cancel"
         onCancel={() => {
-          postcodeForm.resetFields();
           setVisiblePostcodeModal(false);
         }}
         onOk={() => {
           postcodeForm
             .validateFields()
             .then((values) => {
-              // postcodeForm.resetFields();
-              // onCreate(values);
-              dispatch({
-                type: 'tracking/fetchOrder',
-                orderId,
-                postcode: values.postcode,
-              });
+              if (
+                currentOrder &&
+                normalizePostcode(currentOrder.recipient_postcode) ===
+                  normalizePostcode(values.postcode)
+              ) {
+                setVisiblePostcodeModal(false);
+                if (checkPostcodeMode === CheckPostcodeMode.DETAIL) {
+                  setVisibleDeliveryDetail(true);
+                } else {
+                  message.warning(
+                    'We are working hard to make your experience even better. Unfortunately, at the moment this options are not available. Sorry for any inconvenience',
+                  );
+                }
+              } else {
+                postcodeForm.setFields([
+                  {
+                    name: 'postcode',
+                    errors: ['Postcode is wrong'],
+                  },
+                ]);
+              }
             })
             .catch((info) => {
               console.log('Validate Failed:', info);
@@ -185,11 +207,29 @@ const OrderDetail = (props) => {
                   title: currentOrder.id,
                   description: OrderStatusTitles[currentOrder.status],
                   actions: [
+                    <Button
+                      key="reschedule"
+                      danger
+                      type="text"
+                      onClick={() => {
+                        setCheckPostcodeMode(CheckPostcodeMode.RESCHEDULE);
+                        setVisiblePostcodeModal(true);
+                      }}
+                    >
+                      Reschedule delivery
+                    </Button>,
                     currentOrder.status === OrderStatusValues.DELIVERED ||
                     currentOrder.status === OrderStatusValues.PARTIALLY_DELIVERED ? (
-                      <a key="Bind" onClick={() => setVisibleDeliveryDetail(true)}>
+                      <Button
+                        key="detail"
+                        type="text"
+                        onClick={() => {
+                          setCheckPostcodeMode(CheckPostcodeMode.DETAIL);
+                          setVisiblePostcodeModal(true);
+                        }}
+                      >
                         Delivery Detail
-                      </a>
+                      </Button>
                     ) : null,
                   ],
                   avatar:

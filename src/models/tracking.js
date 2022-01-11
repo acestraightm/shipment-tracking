@@ -7,8 +7,8 @@ const TrackingModel = {
     currentOrder: null,
   },
   effects: {
-    *fetchOrder({ orderId, postcode }, { call, put }) {
-      const response = yield call(fetchOrder, orderId, postcode);
+    *fetchOrder({ orderId }, { call, put }) {
+      const response = yield call(fetchOrder, orderId);
       if (response && response.id) {
         // If found order
         yield put({

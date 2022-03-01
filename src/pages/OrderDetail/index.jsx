@@ -37,6 +37,7 @@ import {
   ParcelStateValues,
   ParcelStateTitles,
   LeaveTypeTitles,
+  OrderStatusMessages,
 } from '@/values/constants';
 import { Config } from '@/config';
 
@@ -261,7 +262,7 @@ const OrderDetail = (props) => {
                     const label = moment(log.created_at).format('DD/MM/YYYY HH:mm:ss');
                     return (
                       <Timeline.Item key={`${index}`} color={OrderStatusColors[log.status]}>
-                        <div>{log.description}</div>
+                        <div>{OrderStatusMessages[log.status]}</div>
                         <div style={{ color: 'gray' }}>{label}</div>
                       </Timeline.Item>
                     );

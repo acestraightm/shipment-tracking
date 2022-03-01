@@ -21,6 +21,8 @@ export const OrderStatusValues = {
   COLLECTED: 'collected',
   NOT_COLLECTED: 'not_collected',
 
+  RECEIVED_AT_COLLECTION_DEPOT: 'received_at_collection_depot',
+  IN_TRANSIT_TO_SORTATION_DEPOT: 'in_transit_to_sortation_depot',
   RECEIVED_AT_SORTATION_DEPOT: 'received_at_sortation_depot',
   IN_TRANSIT_TO_DELIVERY_DEPOT: 'in_transit_to_delivery_depot',
   RECEIVED_AT_LAST_DEPOT: 'received_at_last_depot',
@@ -33,7 +35,11 @@ export const OrderStatusValues = {
   PARTIALLY_DELIVERED: 'partially_delivered',
   NOT_DELIVERED: 'not_delivered',
   FINISHED: 'finished',
+  
   MISSING: 'missing',
+  DELAYED: 'delayed',
+  DAMAGED_IN_TRANSIT: 'damaged_in_transit',
+  LOST: 'lost',
 
   SENT_TO_SENDER: 'sent_to_sender'
 }
@@ -59,33 +65,75 @@ export const OrderStatusTitles = {
   [OrderStatusValues.PARTIALLY_DELIVERED]: 'Partially Delivered',
   [OrderStatusValues.NOT_DELIVERED]: 'Not Delivered',
   [OrderStatusValues.FINISHED]: 'Finished',
-  [OrderStatusValues.MISSING]: 'Delayed in Transit',
+
+  [OrderStatusValues.MISSING]: 'Parcels Missing',
+  [OrderStatusValues.DELAYED]: 'Delivery Delayed',
+  [OrderStatusValues.DAMAGED_IN_TRANSIT]: 'Damaged in Transit',
+  [OrderStatusValues.LOST]: 'Parcels Lost',
+
+  [OrderStatusValues.SENT_TO_SENDER]: 'Send to Sender',
+}
+
+export const OrderStatusMessages = {
+  [OrderStatusValues.CREATED]: 'The order is created',
+
+  [OrderStatusValues.ROUTE_ASSIGNED_FOR_COLLECTION]: 'Route is assigned for collection',
+  [OrderStatusValues.DRIVER_ASSIGNED_FOR_COLLECTION]: 'Driver is assigned for collection',
+  [OrderStatusValues.OUT_FOR_COLLECTION]: 'Driver is out for Collection',
+  [OrderStatusValues.COLLECTED]: 'The shipments are collected by the driver',
+  [OrderStatusValues.NOT_COLLECTED]: 'Collecting shipments failed',
+
+  [OrderStatusValues.RECEIVED_AT_COLLECTION_DEPOT]: 'The shipments are received at collection depot',
+  [OrderStatusValues.IN_TRANSIT_TO_SORTATION_DEPOT]: 'The shipments are in transit to sortation depot',
+  [OrderStatusValues.RECEIVED_AT_SORTATION_DEPOT]: 'The shipments are received at sortation depot',
+  [OrderStatusValues.IN_TRANSIT_TO_DELIVERY_DEPOT]: 'The shipments are in transit to delivery depot ',
+  [OrderStatusValues.RECEIVED_AT_LAST_DEPOT]: 'The shipments are received at delivery depot',
+
+  [OrderStatusValues.ROUTE_ASSIGNED_FOR_DELIVERY]: 'Route is assigned for delivery',
+  [OrderStatusValues.DRIVER_ASSIGNED_FOR_DELIVERY]: 'Driver is assigned for delivery',
+  // [OrderStatusValues.AWAITING_PICKUP_FOR_DELIVERY]: 'Awaiting Pickup for Delivery',
+  [OrderStatusValues.OUT_FOR_DELIVERY]: 'Driver is out for dollection',
+  [OrderStatusValues.DELIVERED]: 'The shipments are delivered',
+  [OrderStatusValues.PARTIALLY_DELIVERED]: 'The shipments are partially delivered',
+  [OrderStatusValues.NOT_DELIVERED]: 'The shipments are failed to deliver',
+  [OrderStatusValues.FINISHED]: 'Finished',
+
+  [OrderStatusValues.MISSING]: 'Delayed in transit',
+  [OrderStatusValues.DELAYED]: 'Extended delivery time area. Package is on schedule',
+  [OrderStatusValues.DAMAGED_IN_TRANSIT]: 'Delayed in transit',
+  [OrderStatusValues.LOST]: 'Delayed package, please contact sender for more information',
 
   [OrderStatusValues.SENT_TO_SENDER]: 'Send to Sender',
 }
 
 export const OrderStatusColors = {
   [OrderStatusValues.CREATED]: COLORS.gray,
-
   [OrderStatusValues.ROUTE_ASSIGNED_FOR_COLLECTION]: COLORS.primary,
   [OrderStatusValues.DRIVER_ASSIGNED_FOR_COLLECTION]: COLORS.primary,
   [OrderStatusValues.OUT_FOR_COLLECTION]: COLORS.warning,
   [OrderStatusValues.COLLECTED]: COLORS.success,
   [OrderStatusValues.NOT_COLLECTED]: COLORS.danger,
 
-  [OrderStatusValues.RECEIVED_AT_SORTATION_DEPOT]: COLORS.gray,
+  [OrderStatusValues.RECEIVED_AT_COLLECTION_DEPOT]: COLORS.primary,
+  [OrderStatusValues.IN_TRANSIT_TO_SORTATION_DEPOT]: COLORS.gray,
+  [OrderStatusValues.RECEIVED_AT_SORTATION_DEPOT]: COLORS.primary,
   [OrderStatusValues.IN_TRANSIT_TO_DELIVERY_DEPOT]: COLORS.gray,
   [OrderStatusValues.RECEIVED_AT_LAST_DEPOT]: COLORS.primary,
 
   [OrderStatusValues.ROUTE_ASSIGNED_FOR_DELIVERY]: COLORS.primary,
-  [OrderStatusValues.DRIVER_ASSIGNED_FOR_DELIVERY]: COLORS.warning,
+  [OrderStatusValues.DRIVER_ASSIGNED_FOR_DELIVERY]: COLORS.blue,
   // [OrderStatusValues.AWAITING_PICKUP_FOR_DELIVERY]: COLORS.warning,
-  [OrderStatusValues.OUT_FOR_DELIVERY]: COLORS.blue,
+  [OrderStatusValues.OUT_FOR_DELIVERY]: COLORS.warning,
   [OrderStatusValues.DELIVERED]: COLORS.success,
   [OrderStatusValues.PARTIALLY_DELIVERED]: COLORS.warning,
   [OrderStatusValues.NOT_DELIVERED]: COLORS.danger,
-  [OrderStatusValues.MISSING]: COLORS.danger,
   [OrderStatusValues.FINISHED]: '#bbbbbb',
+
+  [OrderStatusValues.MISSING]: COLORS.danger,
+  [OrderStatusValues.DELAYED]: COLORS.lightGray,
+  [OrderStatusValues.DAMAGED_IN_TRANSIT]: COLORS.danger,
+  [OrderStatusValues.LOST]: COLORS.danger,
+
   [OrderStatusValues.SENT_TO_SENDER]: COLORS.lightGray,
 }
 

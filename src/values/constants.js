@@ -92,7 +92,7 @@ export const OrderStatusMessages = {
   [OrderStatusValues.ROUTE_ASSIGNED_FOR_DELIVERY]: 'Route is assigned for delivery',
   [OrderStatusValues.DRIVER_ASSIGNED_FOR_DELIVERY]: 'Driver is assigned for delivery',
   // [OrderStatusValues.AWAITING_PICKUP_FOR_DELIVERY]: 'Awaiting Pickup for Delivery',
-  [OrderStatusValues.OUT_FOR_DELIVERY]: 'Driver is out for dollection',
+  [OrderStatusValues.OUT_FOR_DELIVERY]: 'Driver is out for delivery',
   [OrderStatusValues.DELIVERED]: 'The shipments are delivered',
   [OrderStatusValues.PARTIALLY_DELIVERED]: 'The shipments are partially delivered',
   [OrderStatusValues.NOT_DELIVERED]: 'The shipments are failed to deliver',

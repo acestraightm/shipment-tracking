@@ -133,7 +133,7 @@ const OrderDetail = (props) => {
                   setVisibleDeliveryDetail(true);
                 } else {
                   message.warning(
-                    'We are working hard to make your experience even better. Unfortunately, at the moment this options are not available. Sorry for any inconvenience. If you wish to reschedule please email customerservice@fastdespatch.co.uk, quoting your tracking number.',
+                    'We are working hard to make your experience even better. Unfortunately, at the moment this options are not available. Sorry for any inconvenience. If you wish to reschedule please email customerservice@fastdespatch.co.uk, quoting your tracking number.', 10
                   );
                 }
               } else {

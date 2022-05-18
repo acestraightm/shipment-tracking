@@ -40,6 +40,7 @@ import {
   OrderStatusMessages,
 } from '@/values/constants';
 import { Config } from '@/config';
+import DeliveryRequestModal from '../DeliveryRequestModal';
 
 const normalizePostcode = (postcode) => {
   return postcode.replace(' ', '').toUpperCase();
@@ -89,6 +90,8 @@ const OrderDetail = (props) => {
   const [visibleDeliveryDetail, setVisibleDeliveryDetail] = useState(false);
   const [visiblePostcodeModal, setVisiblePostcodeModal] = useState(false);
   const [checkPostcodeMode, setCheckPostcodeMode] = useState(CheckPostcodeMode.DETAIL);
+  const [visibleDeliveryRequest, setVisibleDeliveryRequest] = useState(false);
+
   const [form] = Form.useForm();
   const [postcodeForm] = Form.useForm();
 
@@ -111,6 +114,12 @@ const OrderDetail = (props) => {
         </div>
       }
     >
+      {!!currentOrder && <DeliveryRequestModal 
+        visible={visibleDeliveryRequest}
+        order={currentOrder}
+        onClose={() => setVisibleDeliveryRequest(false)}
+      />}
+
       <Modal
         visible={visiblePostcodeModal}
         title="Recipient's Postcode"
@@ -132,9 +141,10 @@ const OrderDetail = (props) => {
                 if (checkPostcodeMode === CheckPostcodeMode.DETAIL) {
                   setVisibleDeliveryDetail(true);
                 } else {
-                  message.warning(
-                    'We are working hard to make your experience even better. Unfortunately, at the moment this options are not available. Sorry for any inconvenience. If you wish to reschedule please email customerservice@fastdespatch.co.uk, quoting your tracking number.', 10
-                  );
+                  // message.warning(
+                  //   'We are working hard to make your experience even better. Unfortunately, at the moment this options are not available. Sorry for any inconvenience. If you wish to reschedule please email customerservice@fastdespatch.co.uk, quoting your tracking number.', 10
+                  // );
+                  setVisibleDeliveryRequest(true);
                 }
               } else {
                 postcodeForm.setFields([
@@ -208,7 +218,7 @@ const OrderDetail = (props) => {
                   title: currentOrder.id,
                   description: OrderStatusTitles[currentOrder.status],
                   actions: [
-                    <Button
+                    currentOrder.status === OrderStatusValues.DELIVERED ? null : <Button
                       key="reschedule"
                       danger
                       type="text"

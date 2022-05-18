@@ -42,6 +42,7 @@ const errorHandler = (error) => {
 /** 配置request请求时的默认参数 */
 
 const request = extend({
+  getResponse: true,
   errorHandler,
   // 默认错误处理
   credentials: 'same-origin', // 默认请求是否带上cookie,

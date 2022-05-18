@@ -236,6 +236,8 @@ export const LeaveTypeValues = {
   BEHIND_WHEELIE_BIN: 'behind_wheelie_bin',
   SHED_GARDEN_HOUSE: 'shed_garden_house',
   LETTERBOX: 'letterbox',
+
+  OTHER_PLACE: 'other_place',
 }
 
 export const LeaveTypeTitles = {
@@ -252,4 +254,6 @@ export const LeaveTypeTitles = {
   [LeaveTypeValues.BEHIND_WHEELIE_BIN]: 'Behind Wheelie Bin',
   [LeaveTypeValues.SHED_GARDEN_HOUSE]: 'Shed Garden House',
   [LeaveTypeValues.LETTERBOX]: 'Letter Box',
+
+  [LeaveTypeValues.OTHER_PLACE]: 'Other Place'
 }

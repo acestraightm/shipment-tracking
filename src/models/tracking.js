@@ -1,4 +1,4 @@
-import { fetchOrder } from '@/services/tracking';
+import { fetchOrder, submitDeliveryRequest } from '@/services/tracking';
 import { notification } from 'antd';
 
 const TrackingModel = {
@@ -8,12 +8,12 @@ const TrackingModel = {
   },
   effects: {
     *fetchOrder({ orderId }, { call, put }) {
-      const response = yield call(fetchOrder, orderId);
-      if (response && response.id) {
+      const {data, response} = yield call(fetchOrder, orderId);
+      if (data && data.id) {
         // If found order
         yield put({
           type: 'setCurrentOrder',
-          payload: response,
+          payload: data,
         });
       } else if (response) {
         if (response.status === 400) {
@@ -21,7 +21,7 @@ const TrackingModel = {
             message: `Wrong postcode`,
             description: 'You have submitted the wrong postcode.',
           });
-      } else if (response.status === 404) {
+        } else if (response.status === 404) {
           notification.error({
             message: `Wrong Order`,
             description: 'Cannot find the order',
@@ -32,6 +32,16 @@ const TrackingModel = {
             description: 'Unknown error found',
           });
         }
+      }
+    },
+    *submitDeliveryRequest({ payload, orderId }, { call, put }) {
+      const response = yield call(submitDeliveryRequest, payload, orderId);
+      if (response && response.id) {
+      } else if (response) {
+        notification.error({
+          message: `Error`,
+          description: 'Submitting delivery request has been failed',
+        });
       }
     },
   },

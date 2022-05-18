@@ -7,3 +7,10 @@ export async function fetchOrder(orderId) {
     data: {}
   });
 }
+
+export async function submitDeliveryRequest(payload, orderId) {
+  return request(`${Config.COURIER_ENDPOINT}/api/orders/${orderId}/create-delivery-request/`, {
+    method: 'POST',
+    data: payload
+  });
+}

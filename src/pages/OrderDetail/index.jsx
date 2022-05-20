@@ -230,6 +230,7 @@ const OrderDetail = (props) => {
                       Reschedule delivery
                     </Button>,
                     currentOrder.status === OrderStatusValues.DELIVERED ||
+                    currentOrder.status === OrderStatusValues.NOT_DELIVERED ||
                     currentOrder.status === OrderStatusValues.PARTIALLY_DELIVERED ? (
                       <Button
                         key="detail"
@@ -417,7 +418,7 @@ const OrderDetail = (props) => {
             <Descriptions.Item label="Drop Place" span={24}>
               {LeaveTypeTitles[currentOrder.leave_place]}
             </Descriptions.Item>
-            <Descriptions.Item label="Picture of the Parcels" span={24}>
+            <Descriptions.Item label="Picture of the Parcels(Destination)" span={24}>
               {currentOrder.leave_picture ? (
                 <Image
                   src={`${Config.COURIER_ENDPOINT}${currentOrder.leave_picture}`}

@@ -22,3 +22,4 @@ npm start
 npm run build
 ```
 
+![image](https://user-images.githubusercontent.com/106478060/177444379-a786fe04-cfd4-4871-b532-ac1752c436a9.png)
